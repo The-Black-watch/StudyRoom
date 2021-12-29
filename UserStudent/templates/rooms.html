@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>自习室列表</title>
+<link rel="icon" href="favicon.ico" type="image/ico">
+<meta name="keywords" content="LightYear,光年,后台模板,后台管理系统,光年HTML模板">
+<meta name="description" content="LightYear是一个基于Bootstrap v3.3.7的后台管理系统的HTML模板。">
+<meta name="author" content="yinqi">
+<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+<link href="../static/css/materialdesignicons.min.css" rel="stylesheet">
+<link href="../static/css/style.min.css" rel="stylesheet">
+</head>
+
+<style>
+.option{
+  /*用div的样式代替select的样式*/
+   width: 140px;
+    height: 40px;
+  /*盒子阴影修饰作用,自己随意*/
+    position: relative;
+    top:10px;
+    border: 1px solid #eeeeee;
+  }
+  .option select{
+   border: none;
+    width: 100%;
+    height: 38px;
+    line-height: 40px;
+    padding-left: 20px;
+  }
+</style>
+<body>
+<div class="lyear-layout-web">
+  <div class="lyear-layout-container">
+    <!--左侧导航-->
+    <aside class="lyear-layout-sidebar">
+       
+      <!-- logo -->
+      <div id="logo" class="sidebar-header">
+         <a href="userStudent/toIndex" style="font-size:18px;margin:10px 0px">网络自习室用户学生端</a>
+      </div>
+      <div class="lyear-layout-sidebar-scroll">
+        
+        <nav class="sidebar-main">
+          <ul class="nav nav-drawer">
+            <li class="nav-item nav-item-has-subnav active open">
+              <a href="javascript:void(0)"><i class="mdi mdi-palette"></i>自习室</a>
+              <ul class="nav nav-subnav">
+                <li class="active"> <a href="rooms.html">自习室列表</a> </li>
+              </ul>
+            </li>
+            <li class="nav-item nav-item-has-subnav">
+              <a href="javascript:void(0)"><i class="mdi mdi-format-align-justify"></i> 自习记录</a>
+              <ul class="nav nav-subnav">
+                <li class="active"> <a href="records.html">我的记录</a> </li>
+              </ul>
+            </li>
+            <li class="nav-item nav-item-has-subnav">
+              <a href="javascript:void(0)"><i class="mdi mdi-file-outline"></i> 个人信息</a>
+              <ul class="nav nav-subnav">
+                <li> <a href="myInfo.html">修改信息</a> </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+    </aside>
+    <!--End 左侧导航-->
+    
+    <!--头部信息-->
+    <header class="lyear-layout-header">
+      
+      <nav class="navbar navbar-default">
+        <div class="topbar">
+          
+          <div class="topbar-left">
+            <div class="lyear-aside-toggler">
+              <span class="lyear-toggler-bar"></span>
+              <span class="lyear-toggler-bar"></span>
+              <span class="lyear-toggler-bar"></span>
+            </div>
+            <span class="navbar-page-title"> 自习室列表 </span>
+          </div>
+          
+          <ul class="topbar-right">
+            <li class="dropdown dropdown-profile">
+              <a href="javascript:void(0)" data-toggle="dropdown">
+                <span>个人中心 <span class="caret"></span></span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li> <a href="lyear_pages_profile.html"><i class="mdi mdi-account"></i> 个人信息</a> </li>
+                <li> <a href="lyear_pages_edit_pwd.html"><i class="mdi mdi-lock-outline"></i> 修改密码</a> </li>
+                <li> <a href="javascript:void(0)"><i class="mdi mdi-delete"></i> 清空缓存</a></li>
+                <li class="divider"></li>
+                <li> <a href="lyear_pages_login.html"><i class="mdi mdi-logout-variant"></i> 退出登录</a> </li>
+              </ul>
+            </li>
+          </ul>
+          
+        </div>
+      </nav>
+      
+    </header>
+    <!--End 头部信息-->
+    
+    <!--页面主要内容-->
+    <main class="lyear-layout-content">
+      
+      <div class="container-fluid">
+        
+        <div class="row">
+          
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-header"><h4>自习室</h4></div>
+
+              <div class="col-lg-6" style="margin-left:10px;margin-top:10px;">
+                      <div class="input-group">
+                        <input id="room_name_search" type="text" class="form-control" placeholder="请输入自习室名称...">
+                        <span class="input-group-btn">
+                          <button onclick="roomListFilter()" class="btn btn-default" type="button">搜索</button>
+                        </span>
+                      </div>
+                <div  class="option">
+                      <select id="chooseType" style="color: #999;">
+                                <option value ="0" >自习室类型</option>
+                                <option value ="1">专业课</option>
+                                <option value ="2">基础课</option>
+                                <option value="3">课外兴趣课</option>
+                      </select>
+                </div>
+              </div>
+
+              <br><br><br><br>
+
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered table-striped table-vcenter">
+                    <thead>
+                      <tr>
+                        <th class="w-15">id</th>
+                        <th class="w-15">名字 </th>
+                        <th class="w-15">介绍</th>
+                        <th class="w-15">类型</th>
+                        <th class="w-15">操作</th>
+                      </tr>
+                    </thead>
+                    <tbody id="roomTableBody">
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>  
+          </div>
+        </div>
+      </div>
+      
+    </main>
+    <!--End 页面主要内容-->
+  </div>
+</div>
+
+<script type="text/javascript" src="../static/js/jquery.min.js"></script>
+<script type="text/javascript" src="../static/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../static/js/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="../static/js/main.min.js"></script>
+
+<script type="text/javascript">
+  function getCookie(name) {
+        var r = document.cookie.match("\\b" + name + "=([^;]*)\\b");
+        return r ? r[1] : undefined;
+  }
+
+  window.onload = function() {
+            $.ajax({
+                type: "post",
+                url: "http://localhost:8000/userStudent/listRooms",
+                headers: {
+                    "X-CSRFToken": getCookie("csrftoken")
+                },
+                data: JSON.stringify({
+                }),
+                contentType: "json/application",
+                //设置超时
+                timeout: 10000,
+                async: true,
+                success: function(data) {
+                     console.log(data.retlist)
+                     var html = "";
+                     for( var i = 0; i < data.retlist.length; i++ ) {
+                           var type = "";
+                           if(data.retlist[i].type == 1){
+                                type = "专业课";
+                           }
+                           if(data.retlist[i].type == 2){
+                                type = "基础课";
+                           }
+                           if(data.retlist[i].type == 3){
+                                type = "课外兴趣课";
+                           }
+                           html += "<tr>";
+                           html +=     "<td class='roomId'>" + data.retlist[i].id + "</td>"
+                           html +=     "<td>" + data.retlist[i].Room_name + "</td>"
+                           html +=     "<td>" + data.retlist[i].introduction + "</td>"
+                           html +=     "<td>" + type + "</td>"
+                           html +=     "<td><button onclick='participate(" + data.retlist[i].id + ")'  class='btn btn-success btn-w-md' type='button'>"+"加入"+"</button></td>"
+                           html += "</tr>";
+                     }
+                     $("#roomTableBody").html(html);
+                },
+                error: function(data) {
+                    alert("error")
+                },
+            });
+  }
+
+
+  function roomListFilter() {
+            var roomName = $('#room_name_search').val()
+            var type = $('#chooseType').val()
+            console.log(roomName)
+            console.log(type)
+            $.ajax({
+                type: "post",
+                url: "http://localhost:8000/userStudent/listRooms",
+                headers: {
+                    "X-CSRFToken": getCookie("csrftoken")
+                },
+                data: JSON.stringify({
+                    "roomName": roomName,
+                    "type": type
+                }),
+                contentType: "json/application",
+                //设置超时
+                timeout: 10000,
+                async: true,
+                success: function(data) {
+                    console.log(data.retlist)
+                     var html = "";
+                     for( var i = 0; i < data.retlist.length; i++ ) {
+                           var type = "";
+                           if(data.retlist[i].type == 1){
+                                type = "专业课";
+                           }
+                           if(data.retlist[i].type == 2){
+                                type = "基础课";
+                           }
+                           if(data.retlist[i].type == 3){
+                                type = "课外兴趣课";
+                           }
+                           html += "<tr>";
+                           html +=     "<td class='roomId'>" + data.retlist[i].id + "</td>"
+                           html +=     "<td>" + data.retlist[i].Room_name + "</td>"
+                           html +=     "<td>" + data.retlist[i].introduction + "</td>"
+                           html +=     "<td>" + type + "</td>"
+                           html +=     "<td><button onclick='participate(" + data.retlist[i].id + ")'  class='btn btn-success btn-w-md' type='button'>"+"加入"+"</button></td>"
+                           html += "</tr>";
+                     }
+                     $("#roomTableBody").html(html);
+                },
+                error: function(data) {
+                    alert("error")
+                },
+            });
+  }
+
+
+  function participate(id)
+  {
+      window.location.replace("http://localhost:8000/userStudent/participate?roomId="+id.toString());
+
+  }
+</script>
+
+</body>
+</html>

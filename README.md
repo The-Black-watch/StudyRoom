@@ -61,4 +61,4 @@
 
 4. 在本地浏览器访问 http://localhost:8000/admin/ 看到管理系统，登陆用户名及密码即为刚才创建的超级用户的用户名与密码
 
-   5.在本地浏览器访问 http://localhost:8000/userStudent/ 登录学生用户
+5.在本地浏览器访问 http://localhost:8000/userStudent/ 登录学生用户
